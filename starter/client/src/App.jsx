@@ -8,6 +8,8 @@ import { LogIn } from './components/LogIn'
 import { NotFound } from './components/NotFound'
 import { Todos } from './components/Todos'
 
+
+
 export default function App() {
   function generateMenu() {
     return (
@@ -24,7 +26,10 @@ export default function App() {
   function logInLogOutButton() {
     if (isAuthenticated) {
       return (
-        <Menu.Item name="logout" onClick={() => logout({ returnTo: window.location.origin })}>
+        <Menu.Item
+          name="logout"
+          onClick={() => logout({ returnTo: window.location.origin })}
+        >
           Log Out
         </Menu.Item>
       )
@@ -47,7 +52,6 @@ export default function App() {
             <Grid.Column width={16}>
               <BrowserRouter>
                 {generateMenu()}
-
                 {generateCurrentPage(isAuthenticated)}
               </BrowserRouter>
             </Grid.Column>

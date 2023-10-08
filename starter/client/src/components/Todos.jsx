@@ -77,9 +77,12 @@ export function Todos() {
   async function onTodoDelete(todoId) {
     try {
       const accessToken = await getAccessTokenSilently({
-        audience: `https://test-endpoint.auth0.com/api/v2/`,
-        scope: 'delete:todo'
+        authorizationParam: {
+          audience: `http://ismail-udacity/`,
+          scope: 'delete:todo'
+        }
       })
+      //const accessToken = 'test'
       await deleteTodo(accessToken, todoId)
       setTodos(todos.filter((todo) => todo.todoId !== todoId))
     } catch (e) {
@@ -91,9 +94,12 @@ export function Todos() {
     try {
       const todo = todos[pos]
       const accessToken = await getAccessTokenSilently({
-        audience: `https://test-endpoint.auth0.com/api/v2/`,
-        scope: 'write:todo'
+        authorizationParam: {
+          audience: `http://ismail-udacity/`,
+          scope: 'write:todo'
+        }
       })
+      //const accessToken = 'test'
       await patchTodo(accessToken, todo.todoId, {
         name: todo.name,
         dueDate: todo.dueDate,
@@ -128,9 +134,12 @@ export function Todos() {
     async function foo() {
       try {
         const accessToken = await getAccessTokenSilently({
-          audience: `https://test-endpoint.auth0.com/api/v2/`,
-          scope: 'read:todos'
+          authorizationParam: {
+            audience: `http://ismail-udacity/`,
+            scope: 'read:todo'
+          }
         })
+        //const accessToken = 'test'
         console.log('Access token: ' + accessToken)
         const todos = await getTodos(accessToken)
         setTodos(todos)
